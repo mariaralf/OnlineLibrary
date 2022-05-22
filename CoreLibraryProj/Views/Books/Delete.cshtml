@@ -1,0 +1,47 @@
+﻿@model CoreLibraryProj.Book
+
+@{
+    ViewData["Title"] = "Видалити книгу";
+}
+
+@await Html.PartialAsync("Sidebar")
+@await Html.PartialAsync("HeaderItems")
+
+<h1 style="">Видалення</h1>
+<h3>Ви впевнені, що бажаєте видалити цей документ?</h3>
+<div>
+    <h4>Книга</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BookName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BookName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BookDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BookDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BookAuthor)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BookAuthor.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BookRubric)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BookRubric.Id)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Видалити" class="btn btn-danger" /> |
+        <a asp-action="Index">Повернутися до переліку книг</a>
+    </form>
+</div>

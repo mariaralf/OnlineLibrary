@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model CoreLibraryProj.ViewModel.ChangeRoleViewModel
+<head>
+    <title>Ролі користувача</title>
+</head>
+
+@{
+    ViewData["Title"] = "Права доступу";
+    }
+
+@await Html.PartialAsync("Sidebar")
+@await Html.PartialAsync("HeaderItems")
+
+<h2>Зміна ролей для користувача @Model.UserEmail</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="userId" value="@Model.UserId" />
+    <div class="form-group">
+        @foreach (IdentityRole role in Model.AllRoles)
+        {
+            <input type="checkbox" name="roles" value="@role.Name"
+                   @(Model.UserRoles.Contains(role.Name) ? "checked=\"checked\"" : "") />@role.Name <br />
+            }
+    </div>
+    <button type="submit" class="btn btn-primary">Зберегти</button>
+</form>
